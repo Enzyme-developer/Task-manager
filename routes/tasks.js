@@ -1,4 +1,3 @@
-//require module
 const express = require('express');
 //call express router
 const router = express.Router();
