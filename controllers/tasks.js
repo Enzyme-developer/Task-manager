@@ -1,7 +1,7 @@
 const Task = require('../models/task')
 
 
-//create different controllers( functions that send a response ) for actions eto be performed
+//create different controllers( functions that send a response ) for actions to be performed
 
 const getAllTasks = (req, res) => {
     res.send('get all tasks')

@@ -7,23 +7,18 @@ require ('dotenv').config()
 //middleware
 app.use(express.json())
 
-//routes
-app.get('/hello', (req, res) => {
-    res.send('Task manager')
-})
-
 app.use('/api/v1/tasks', tasks)
-
 
 //port
 const PORT = 3000;
 
+//start server and connect database
 const start = async () => {
     try {
         //connect to Db
         await connectDb(process.env.MONGO_URI)
         //listen
-        app.listen(PORT, console.log('server is listeniing on port 3000'))
+        app.listen(PORT, console.log('server is listening on port 3000'))
     } catch (err) {
         console.log(err)
     }
