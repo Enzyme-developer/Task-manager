@@ -24,7 +24,7 @@ app.use(errorHandler)
 
 
 //port
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 //start server and connect database
 const start = async () => {
@@ -32,7 +32,7 @@ const start = async () => {
         //connect to Db
         await connectDb(process.env.MONGO_URI)
         //listen
-        app.listen(PORT, console.log('server is listening on port 3000'))
+        app.listen(PORT, console.log(`server is listening on port ${PORT}...`))
     } catch (err) {
         console.log(err)
     }

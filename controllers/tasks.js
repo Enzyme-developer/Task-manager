@@ -1,5 +1,6 @@
 const Task = require('../models/task')
 const asyncWrapper = require('../middleware/asyncWrapper')
+const { createCustomError } = require('../errors/customError')
 //create different controllers( functions that send a response ) for actions to be performed
 //use the asyncWrapper function to avoid try/catch redundancy
 
@@ -26,10 +27,7 @@ const getSingleTask = asyncWrapper(async (req, res, next) => {
 
     //return error message if task id is null
     if (!singleTask) {
-        const error = new Error('Not found')
-        error.status = 404
-        return next(error)
-        return res.status(404).json({msg: `No task with ID ${TaskID}`})
+        return next(createCustomError(`No task with ID ${TaskID}`, 404 ))
     }
     res.status(200).json({singleTask})
 })
@@ -45,7 +43,7 @@ const updateTask = asyncWrapper(async (req, res) => {
     })
     //return error message if task id is null
     if (!singleTask) {
-        return res.status(404).json({msg: `No task with ID ${TaskID}`})
+        return next(createCustomError(`No task with ID ${TaskID}`, 404 ))
     }
     res.status(200).json({id: singleTask, data: req.body})
 })
@@ -59,7 +57,7 @@ const deleteTask = asyncWrapper(async (req, res) => {
     const singleTask = await Task.findOneAndDelete({ _id: TaskID })
     //return error message if task id is null
     if (!singleTask) {
-        return res.status(404).json({msg: `No task with ID ${TaskID}`})
+        return next(createCustomError(`No task with ID ${TaskID}`, 404 ))
     }
     // res.status(200).json({singleTask})
 })
