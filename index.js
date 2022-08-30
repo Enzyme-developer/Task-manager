@@ -2,12 +2,26 @@ const connectDb = require('./db/connect')
 const express = require('express');
 const app = express()
 const tasks = require('./routes/tasks')
-require ('dotenv').config()
+require('dotenv').config()
+const notfound = require('./middleware/notFound')
+const errorHandler = require('./middleware/errorHandler')
+
+
 
 //middleware
-app.use(express.json())
+app.use(express.static('../Frontend/public')) //static middleware
+app.use(express.json()) //json middleware
 
+
+
+//routes 
 app.use('/api/v1/tasks', tasks)
+//404 page
+app.use(notfound)
+//error handler
+app.use(errorHandler)
+
+
 
 //port
 const PORT = 3000;
