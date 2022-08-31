@@ -3,9 +3,9 @@ const express = require('express');
 const app = express()
 const tasks = require('./routes/tasks')
 require('dotenv').config()
+const cors = require('cors');
 const notfound = require('./middleware/notFound')
 const errorHandler = require('./middleware/errorHandler')
-
 
 
 //middleware
@@ -13,6 +13,7 @@ app.use(express.static('../Frontend/public')) //static middleware
 app.use(express.json()) //json middleware
 
 
+app.use(cors({origin: '*'}));
 
 //routes 
 app.use('/api/v1/tasks', tasks)
@@ -20,7 +21,6 @@ app.use('/api/v1/tasks', tasks)
 app.use(notfound)
 //error handler
 app.use(errorHandler)
-
 
 
 //port
