@@ -1,0 +1,21 @@
+body,html, * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.regular {
+    color: burlywood;
+}
+
+.crossed{
+    text-decoration: line-through;
+    color: red;
+}

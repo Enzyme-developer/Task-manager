@@ -1,5 +1,7 @@
 import axios from "axios"
 import React, { useEffect, useState} from "react"
+import { Link } from "react-router-dom"
+import './style.css'
 
 const Tasks = () => {
 
@@ -50,13 +52,13 @@ const Tasks = () => {
                 <button type="submit">Add Task</button>
             </form>
             <div>
-                {tasks.map((task : any, index: number) => (
-                    <div key={index}>
-                        <p>{task.name}</p>
+                {tasks.map((task: any, index: number) => (
+                    <Link to={`/:${task._id}`} key={index}>
+                        <p className={ !task.completed ? 'regular' : 'crossed' }>{task.name}</p>
                         <p>completed: {task.completed.toString()}</p>
                         <p>{task._id}</p>
                         <button onClick={() => deleteTask(task._id)}>Delete</button>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </>    
