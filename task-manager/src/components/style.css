@@ -103,7 +103,7 @@ button{
 
 .crossed{
     text-decoration: line-through;
-    color: black;
+    color: orangered;
     font-weight: 600;
 }
 
