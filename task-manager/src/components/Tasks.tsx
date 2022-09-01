@@ -46,22 +46,27 @@ const Tasks = () => {
 
     
     return (
-        <>
+        <div className='container'>
+            <h1>Task Manager</h1>
             <form onSubmit={addTodo}>
                 <input type="text" value={todoName} onChange={(e) => setTodoName(e.target.value)} />
                 <button type="submit">Add Task</button>
             </form>
-            <div>
+            <div className="tasks">
                 {tasks.map((task: any, index: number) => (
-                    <Link to={`/:${task._id}`} key={index}>
-                        <p className={ !task.completed ? 'regular' : 'crossed' }>{task.name}</p>
-                        <p>completed: {task.completed.toString()}</p>
-                        <p>{task._id}</p>
-                        <button onClick={() => deleteTask(task._id)}>Delete</button>
-                    </Link>
+                        <div className='task' key={index}>
+                            <div className="name-div">
+                                <h3 className={ !task.completed ? 'regular' : 'crossed' }>{task.name}</h3>
+                                <h4 className="completed" >completed: {task.completed.toString()}</h4>
+                            </div>
+                            <div>
+                                <button onClick={() => deleteTask(task._id)}>Delete</button>
+                                <Link className='edit' to={`/:${task._id}`}>Edit</Link>
+                            </div>
+                        </div>
                 ))}
             </div>
-        </>    
+        </div>    
   )
 }
 

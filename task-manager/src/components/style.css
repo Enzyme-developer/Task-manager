@@ -9,13 +9,106 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color:  rgb(255, 166, 0);
 }
 
+.container{
+    width: 100%;
+    max-width: 500px;
+    min-width: 500px;
+    padding: 1rem;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.label {
+    font-size: 1rem;
+    text-align: left;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+select {
+    padding: .5rem;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+
+input{
+    border: none; 
+    font-size: 1rem;
+    outline: none;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    padding: .7rem 1rem;
+    background-color: white;
+}
+
+button{
+    border: none;
+    cursor: pointer;
+    padding: .7rem;
+    text-align: center;
+    background-color: blue;
+    color: white;
+    font-size: 1rem;
+}
+
+.tasks{
+    margin: 2rem 0;
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 4rem 0 2rem;
+    background-color: white;
+    padding: 2rem 1rem;
+    text-decoration: none;
+}
+
+.tasks button{
+    padding: .3rem .5rem;
+    border-radius: 5px;
+    border: none;
+    font-size: .8rem;
+    background-color: orangered;
+    cursor: pointer;
+}
+
+.edit{
+    padding: .3rem .8rem;
+    border-radius: 5px;
+    border: none;
+    font-size: .8rem;
+    background-color: blue;
+    cursor: pointer;
+    margin-left: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+
 .regular {
-    color: burlywood;
+    color: black;
+    font-weight: 600;
 }
 
 .crossed{
     text-decoration: line-through;
-    color: red;
+    color: black;
+    font-weight: 600;
+}
+
+.back{
+    font-weight: 600;
+    color: white;
+    font-size: 1.2rem;
 }

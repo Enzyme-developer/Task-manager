@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import './style.css'
 
 const initialValue = {
     name: "",
@@ -62,21 +63,22 @@ const SingleTask = () => {
 
 
   return (
-    <div>
+    <div className='container'>
         <h1>Individual Task</h1>
           <div>
               <form onSubmit={editTask}>
+                  <label htmlFor="name" className='label'>Task name : </label>
                   <input type="text" name='name' value={newTask.name} onChange={(e) => onValueChange(e)} />
+                  <label htmlFor="name" className='label'>Completed: </label>
                   <select name="completed" value={newTask.completed.toString()} onChange={(e) => onValueChange(e)}>
                       <option value="true">True</option>
                       <option value="false">false</option>
                   </select>
-                  {/* <input type="text" name='completed' value={newTask.completed.toString()} onChange={(e) => onValueChange(e)} /> */}
-                  <button type='submit'>Edit Task</button>
+                  <button style={{ marginBottom: '30px', marginTop: '30px' }} type='submit'>Edit Task</button>
                   <p>{error}</p>
               </form>
 
-              <Link to='/'>Back to Tasks</Link>
+              <Link className='back' to='/'>Back to Tasks</Link>
         </div>
     </div>
   )
