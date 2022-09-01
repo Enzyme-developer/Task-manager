@@ -60,6 +60,11 @@ button{
     font-size: 1rem;
 }
 
+button:hover {
+    background-color: aqua;
+    color: black;
+}
+
 .tasks{
     margin: 2rem 0;
 }
