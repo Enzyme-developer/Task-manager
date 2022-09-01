@@ -7,42 +7,37 @@ const Tasks = () => {
     const [todoName, setTodoName] = useState<string>('')
     
     const baseUrl = 'http://localhost:3000'
-
-    let bodyFormData = new FormData();
-    bodyFormData.append('name', `${todoName}`);
+    // console.log(tasks);
     
-    const addTodo = async (e:any) => {
+
+    //post request
+    const addTodo = async (e: any) => {
         e.preventDefault()
-        const data = await fetch(`${baseUrl}/api/v1/tasks`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "multipart/form-data"  
-			},
-			body: JSON.stringify({
-				text: todoName
-			})
-		}).then(res => res.json());
-
-		setTasks([...tasks, data]);
-      }
-
-    
-
-    const getTodos = async () => {
-        try {
-            const fetchedTasks = await axios.get(baseUrl + "/api/v1/tasks")
-            setTasks(fetchedTasks.data.tasks)
-        } catch (error: any) {
-          throw new Error(error)
-        }
+        const addedTask = await axios.post(`${baseUrl}/api/v1/tasks`, { name: todoName, });
+        setTodoName(' ')
+        console.log(addedTask.data.task)
+        return addedTask
     }
+
     
+
+    //get request
     useEffect(() => {
+        const getTodos = async () => {
+            try {
+                const fetchedTasks = await axios.get(baseUrl + "/api/v1/tasks")
+                setTasks(fetchedTasks.data.tasks)
+            } catch (error: any) {
+              throw new Error(error)
+            }
+        }
+
         getTodos()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [tasks])
 
 
+
+    //delete request
     const deleteTask = ( _id :string) => {
         axios.delete(`${baseUrl}/api/v1/tasks/${_id}`)
     }
@@ -51,14 +46,15 @@ const Tasks = () => {
     return (
         <>
             <form onSubmit={addTodo}>
-                <input type="text" onChange={(e) => setTodoName(e.target.value)} />
+                <input type="text" value={todoName} onChange={(e) => setTodoName(e.target.value)} />
                 <button type="submit">Add Task</button>
             </form>
             <div>
                 {tasks.map((task : any, index: number) => (
                     <div key={index}>
-                        {task.name}
-                        {task.completed}
+                        <p>{task.name}</p>
+                        <p>completed: {task.completed.toString()}</p>
+                        <p>{task._id}</p>
                         <button onClick={() => deleteTask(task._id)}>Delete</button>
                     </div>
                 ))}
